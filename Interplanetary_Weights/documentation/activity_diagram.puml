@@ -1,0 +1,17 @@
+@startuml
+
+start
+
+:Get User name;
+
+:Get User weight;
+
+:Multiply User weight by Planetary factors;
+
+:Generate entries for each planet;
+
+:Print full report;
+
+end
+
+@enduml
