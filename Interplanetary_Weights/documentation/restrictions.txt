@@ -1,0 +1,6 @@
+These are the original restrictions:
+- Constants and Variables
+- Basic Input and Output
+- Type conversion (Strings, Integers, Floats)
+- Arithmetic and Assignment operators
+- Nothing beyond this: no loops, classes, arrays, etc.
