@@ -1,0 +1,2 @@
+Interest(I) = Principal(P) * Rate(r) * Time(t)
+NOTE: Divide by 100 if Rate is not calculated as a percent

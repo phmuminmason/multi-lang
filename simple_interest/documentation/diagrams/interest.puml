@@ -1,0 +1,21 @@
+@startuml
+
+start
+
+:Ask for Principal;
+
+:Ask for Interest Rate;
+
+if (Rate is given as a percent?) then (no)
+  :Divide Rate by 100;
+endif
+
+:Ask for Time;
+
+:Multiply inputs;
+
+:Return report;
+
+stop
+
+@enduml
