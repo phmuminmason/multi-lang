@@ -1,0 +1,34 @@
+@startuml
+
+start
+
+:Welcome Screen;
+
+:Get temp input;
+
+:Get system initial;
+
+if (Initial is F?) then (yes)
+		if (temp > 212?) then (yes)
+			:Say "Temp cannot be greater than 212.";
+			stop
+		else (no)
+			:Convert to Celsius;
+		endif
+	(no) elseif (Initial is C?) then (yes)
+		if (Temp is > 100?) then (yes)
+			:Say "Temp cannot be greater than 100.";
+			stop
+		else (no)
+			:Convert to Fahrenheit;
+		endif
+	else (no)
+		:Say "Enter F or C";
+		stop
+endif
+
+:Print report;
+
+end
+
+@enduml
