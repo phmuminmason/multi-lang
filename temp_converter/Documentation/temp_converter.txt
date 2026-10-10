@@ -1,10 +1,10 @@
 Original Specifications:
-1. Write out a welcome message
+1. Write out a welcome message (with name in it)
 2. Use Hungarian Notation and end variable names with own initials
 3. Prompt user for a temperature; accept any real number
-4. Prompt user for system initial, either "F" or "C".
+4. Prompt user for scale initial, either "F" or "C", case insensitive.
 	a. If input is neither respond "Enter F or C" and terminate.
-5. Convert the Temperature to the alternate system
+5. Convert the Temperature to the alternate scale
 	a. If temp >212F then respond with "Temperature cannot be greater than 212" and terminate
 	b. If temp is >100C respond similarly
 6. Perform conversion (see below) and respond "The Fahrenheit/Celsius equivalent is: " and the converted temp
@@ -15,8 +15,9 @@ Original Specifications:
 	b. What did you struggle with?
 	c. Explain how if/else and if/elif/else works; explain your usage of them in this project
 	d. List exactly three things learned from this assignment
+10. DO NOT use things which were not discussed in class
+11. Use the most efficient code possible
 
-
-	Formulae
+Formulae
 	C = (5/9) * (temp - 32)
 	F = ((9/5) * temp) + 32

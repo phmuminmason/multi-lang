@@ -6,28 +6,28 @@ start
 
 :Get temp input;
 
-:Get system initial;
+:Get scale initial;
 
 if (Initial is F?) then (yes)
 		if (temp > 212?) then (yes)
-			:Say "Temp cannot be greater than 212.";
+			:"Temp cannot be greater than 212.";
 			stop
 		else (no)
 			:Convert to Celsius;
 		endif
 	(no) elseif (Initial is C?) then (yes)
 		if (Temp is > 100?) then (yes)
-			:Say "Temp cannot be greater than 100.";
+			:"Temp cannot be greater than 100.";
 			stop
 		else (no)
 			:Convert to Fahrenheit;
 		endif
 	else (no)
-		:Say "Enter F or C";
+		:"Enter F or C";
 		stop
 endif
 
-:Print report;
+:Print report "The Celsius/Fahrenheit equivalent is:";
 
 end
 
