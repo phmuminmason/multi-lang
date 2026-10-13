@@ -1,5 +1,8 @@
 use std::io::{self, Write};
 
+const CELSIUS_MAX: f32 = 100.0;
+const FAHRENHEIT_MAX: f32 = 212.0;
+
 fn main() {
     let mut temp = String::new();
     let mut scale = String::new();
@@ -25,8 +28,8 @@ fn main() {
 }
 
 fn convert_to_fahrenheit(t: f32) {
-    if t > 100.0 {
-        println!("Temp cannot exceed 100.0 C");
+    if t > CELSIUS_MAX {
+        warn_temp(CELSIUS_MAX, "C");
     } else {
         let new_temp = (t * 9.0 / 5.0) + 32.0;
         println!("The Fahrenheit equivalent is: {new_temp:.2}"); 
@@ -34,10 +37,14 @@ fn convert_to_fahrenheit(t: f32) {
 }
 
 fn convert_to_celsius(t: f32) {
-    if t > 212.0 {
-        println!("Temp cannot exceed 212.0 F");
+    if t > FAHRENHEIT_MAX {
+        warn_temp(FAHRENHEIT_MAX, "F");
     } else {
         let new_temp = (t - 32.0) * 5.0 / 9.0;
         println!("The Celsius equivalent is: {new_temp:.2}"); 
     }
+}
+
+fn warn_temp(temp: f32, scale: &str) {
+    println!("Temp cannot exceed {temp:#.2}{scale}");
 }
