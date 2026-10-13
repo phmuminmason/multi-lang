@@ -34,4 +34,4 @@ else:
     print(SCALE_ERROR)
 
 if (celsius or fahrenheit) and valid_temp:
-    print(f"The {new_scale} equivalent is: {new_temp:.2f}°")
+    print(f"The {new_scale} equivalent is: {new_temp:.1f}°")

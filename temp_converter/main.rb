@@ -37,4 +37,4 @@ else
   exit
 end
 
-puts format("The %s equivalent is: %.2f", new_scale, new_temp)
+puts format("The %s equivalent is: %.1f", new_scale, new_temp)

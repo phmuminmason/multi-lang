@@ -21,3 +21,6 @@ Original Specifications:
 Formulae
 	C = (5/9) * (temp - 32)
 	F = ((9/5) * temp) + 32
+
+Errata
+- Temperature format calls for ONE degree of precision

@@ -7,16 +7,16 @@ DATA DIVISION.
     01 FAHRENHEIT-MAX  CONSTANT 212.
     01 HEAT-WARNING    CONSTANT "TEMPERATURE CANNOT BE GREATER THAN".
 
-    01 user-temp       PIC S999V99.
+    01 user-temp       PIC S999V9.
     01 user-scale      PIC X.
       88 celsius       VALUE "C", "c".
       88 fahrenheit    VALUE "F", "f".
       88 valid-scale   VALUES "C", "c", "F", "f".
 
-    01 converted-temp  PIC S999V99.
+    01 converted-temp  PIC S999V9.
 
     01 new-scale       PIC X(10).
-    01 new-temp        PIC -ZZ9.99.
+    01 new-temp        PIC -ZZ9.9.
 
 PROCEDURE DIVISION.
   Begin.

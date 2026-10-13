@@ -32,7 +32,7 @@ fn convert_to_fahrenheit(t: f32) {
         warn_temp(CELSIUS_MAX, "C");
     } else {
         let new_temp = (t * 9.0 / 5.0) + 32.0;
-        println!("The Fahrenheit equivalent is: {new_temp:.2}"); 
+        println!("The Fahrenheit equivalent is: {new_temp:.1}"); 
     }
 }
 
@@ -41,10 +41,10 @@ fn convert_to_celsius(t: f32) {
         warn_temp(FAHRENHEIT_MAX, "F");
     } else {
         let new_temp = (t - 32.0) * 5.0 / 9.0;
-        println!("The Celsius equivalent is: {new_temp:.2}"); 
+        println!("The Celsius equivalent is: {new_temp:.1}"); 
     }
 }
 
 fn warn_temp(temp: f32, scale: &str) {
-    println!("Temp cannot exceed {temp:#.2}{scale}");
+    println!("Temp cannot exceed {temp:#.1}{scale}");
 }
