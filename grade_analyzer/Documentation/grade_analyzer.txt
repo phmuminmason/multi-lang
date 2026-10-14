@@ -10,7 +10,7 @@ Original Requirements:
 	a. `min()` and the list data type are PROHIBITED
 	b. Bonus: Try to make it so that the average grade calculation happens ONCE regardless of branch
 8. Grade average should be a float; one point of precision
-9. Determine the letter grade using table. [Use an ASCII/digit hack since no tables allowed? We discussed Unicode in class so I consider it free reign.]
+9. Determine the letter grade without using a table. [Use an ASCII/digit hack since no tables allowed? We discussed Unicode in class so I consider it free reign.]
 	A+ : 97.0 or more
 	A  : 94.0 to 96.9
 	A- : 90.0 to 93.9

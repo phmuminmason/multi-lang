@@ -1,0 +1,44 @@
+@startuml
+
+title Test Scores (Branching)
+caption Use of `min()` function or the List data type is prohibited.
+
+start
+
+group "Score #1" {
+	:Ask for first score;
+	:User enters score; <<acceptEvent>>
+	:score_1; <<object>>
+	:lowest_score = score_1;
+}
+
+group "Score #2" {
+	:Ask for second score;
+	:User enters score; <<acceptEvent>>
+	:score_2; <<object>>
+	if (score_2 < lowest_score ?) then (yes)
+		:lowest_score = score_2;
+	endif
+}
+
+group "Score #3" {
+	:Ask for third score;
+	:User enters score; <<acceptEvent>>
+	:score_3; <<object>>
+	if (score_3 < lowest_score ?) then (yes)
+		:lowest_score = score_3;
+	endif
+}
+
+group "Score #4" {
+	:Ask for fourth score;
+	:User enters score; <<acceptEvent>>
+	:score_4; <<object>>
+	if (score_4 < lowest_score ?) then (yes)
+		:lowest_score = score_4;
+	endif
+}
+
+:Test scores 1..4; <<object>>
+
+@enduml

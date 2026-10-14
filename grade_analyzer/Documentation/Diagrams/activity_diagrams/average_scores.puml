@@ -1,0 +1,23 @@
+@startuml
+
+title Average Score Calculation
+
+start
+
+:Dividend = 4;
+
+:Sum test scores;
+:Total; <<object>>
+
+if (Drop lowest score?) then (yes)
+	:Total -= lowest score;
+	:dividend = 3;
+	:Total; <<object>>
+endif
+
+:dividend; <<object>>
+
+:Divide total by dividend;
+:Average Score; <<object>>
+
+@enduml

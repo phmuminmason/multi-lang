@@ -1,0 +1,22 @@
+
+@startuml
+start
+
+:Receive order;
+:Order details; <<object>>
+
+:Validate order;
+
+:Send order notification; <<sendSignal>>
+
+:Wait for payment confirmation; <<acceptEvent>>
+
+if (Payment confirmed?) then (yes)
+  :Payment receipt; <<object>>
+  :Fulfill order;
+else (no)
+  :Handle payment failure;
+endif
+
+stop
+@enduml

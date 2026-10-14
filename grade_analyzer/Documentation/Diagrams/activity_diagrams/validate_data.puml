@@ -1,0 +1,19 @@
+@startuml
+
+title Data Validation
+
+start
+
+if (lowest score <= 0) then (yes)
+	:Warn "All test scores must be positive";
+	stop
+endif
+
+if (Drop Lowest == "y" | "n") then (no)
+	:Warn "Answer must be Y or N";
+	stop
+endif
+
+:Continue processing;
+
+@enduml

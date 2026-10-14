@@ -1,0 +1,39 @@
+@startuml
+title Grade Calculation - Main Activity Diagram
+
+start
+
+group Input {
+	:Ask user name;
+	:Name; <<object>> 
+	:Get test scores; 
+		note right 
+			see "test_scores.puml"
+		end note
+	:Test Scores; <<object>>
+
+	:Ask drop answer;
+	:Drop Lowest; <<object>>
+}
+
+
+:Validate data; 
+	note left
+		see "validate_data.puml" 
+	end note
+
+group Calculation {
+	:Calculate Average; 
+		note right: See average_score.puml
+
+	:average; <<object>>
+
+	:Calculate letter grade; 
+		note left: see "grade_decoder.puml"
+}
+:Letter Grade; <<object>>
+
+:Print results;
+end
+
+@enduml
