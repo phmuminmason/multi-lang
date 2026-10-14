@@ -1,0 +1,31 @@
+@startuml
+
+start
+
+:Receive average grade; 
+:split the most and least significant digit (ignore decimal);
+
+fork
+:Take tens digit X;
+
+if (X < 6?) then (yes)
+	:Grade is "F";
+else
+	:Letter is the ASCII character 
+	(X - 10) + 64;
+endif
+
+fork again
+
+:Take ones digit Y
+Simulate Y & 0b1100;
+
+:S = Y & 0b1100;
+
+if () 
+
+end fork
+
+end
+
+@enduml

@@ -1,0 +1,31 @@
+Original Requirements:
+1. Get user's name and store in a variable
+2. Get user's last  4 test scores (INT)
+3. Ask if lowest grade should be dropped 
+4. Validate all scores are positive [potential bug?] 
+	a. "All test scores must be positive"; `exit()` or `raise SystemExit` to quit early
+5. Validate drop-lowest-grade variable
+	a. Respond and terminate early if invalid
+6. Code the logic for each branch determined by the lowest-grade variable
+	a. `min()` and the list data type are PROHIBITED
+	b. Bonus: Try to make it so that the average grade calculation happens ONCE regardless of branch
+8. Grade average should be a float; one point of precision
+9. Determine the letter grade using table. [Use an ASCII/digit hack since no tables allowed? We discussed Unicode in class so I consider it free reign.]
+	A+ : 97.0 or more
+	A  : 94.0 to 96.9
+	A- : 90.0 to 93.9
+	B+ : 87.0 to 89.9
+	B  : 84.0 to 86.9
+	B- : 80.0 to 83.9
+	C+ : 77.0 to 79.9
+	C  : 74.0 to 76.9
+	C- : 70.0 to 73.9
+	D+ : 67.0 to 69.9
+	D  : 64.0 to 66.9
+	D- : 60.0 to 63.9
+	F  : 59.9 or less
+10. Use Hungarian notation
+11. Comment code
+12. Return person's name, average and letter grade
+13. Fill out assignment header. Special question (question #3) this week is: how did you figure out how to drop the lowest grade?
+14. Be as efficient as possible
