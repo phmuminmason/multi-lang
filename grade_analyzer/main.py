@@ -1,0 +1,80 @@
+NP_SCORE_ERROR = 'Test score must be positive!'
+INV_DROP_ERROR = 'Answer must be "Y" or "N"'
+A_PLUS_THRESHOLD = 97.0
+PASSING_THRESHOLD = 60.0
+
+lowest_score = 0
+divisor = 4
+letter_grade = ""
+grade_sign = ""
+
+name = input("What is your name?: ")
+
+test1 = int(input("Enter your first score: "))
+if test1 <= 0:
+    print(NP_SCORE_ERROR)
+    exit(1) # Exit code is for my own purposes
+lowest_score = test1
+
+test2 = int(input("Enter your second score: "))
+if test2 <= 0:
+    print(NP_SCORE_ERROR)
+    exit(1)
+if test2 < lowest_score:
+    lowest_score = test2
+
+test3 = int(input("Enter your third score: "))
+if test3 <= 0:
+    print(NP_SCORE_ERROR)
+    exit(1)
+if test3 < lowest_score:
+    lowest_score = test3
+
+test4 = int(input("Enter your fourth score: "))
+if test4 <= 0:
+    print(NP_SCORE_ERROR)
+    exit(1)
+if test4 < lowest_score:
+    lowest_score = test4
+
+drop = input('Drop the lowest score? (Y/N): ').upper()
+
+if not (drop == 'N' or drop == 'Y'):
+    print(INV_DROP_ERROR)
+    exit(1)
+
+drop = drop == 'Y'
+
+score_sum = test1 + test2 + test3 + test4
+
+if drop:
+    divisor = 3
+    score_sum -= lowest_score
+
+average = score_sum / divisor
+
+if average % 10 > 7:
+    grade_sign = '+'
+elif average % 10 < 4:
+    grade_sign = '-'
+
+if average >= A_PLUS_THRESHOLD:
+    letter_grade = 'A+'
+    grade_sign = ''
+elif average >= 90:
+    letter_grade = 'A'
+elif average >= 80:
+    letter_grade = 'B'
+elif average >= 70:
+    letter_grade = 'C'
+elif average >= PASSING_THRESHOLD:
+    letter_grade = 'D'
+else:
+    letter_grade = 'F'
+    grade_sign = ''
+
+
+letter_grade += grade_sign
+
+
+print(f'{name}: {average:.1f}% "{letter_grade}"')

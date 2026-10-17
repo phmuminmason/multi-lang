@@ -28,8 +28,7 @@ group Calculation {
 
 	:average; <<object>>
 
-	:Calculate letter grade; 
-		note left: see "grade_decoder.puml"
+	:Calculate letter grade;
 }
 :Letter Grade; <<object>>
 
