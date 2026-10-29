@@ -37,13 +37,13 @@ if test4 <= 0:
 if test4 < lowest_score:
     lowest_score = test4
 
-drop = input('Drop the lowest score? (Y/N): ').upper()
+drop_char = input('Drop the lowest score? (Y/N): ').upper()
 
-if not (drop == 'N' or drop == 'Y'):
+if not (drop_char == 'N' or drop_char == 'Y'):
     print(INV_DROP_ERROR)
-    exit(1)
+    exit(2)
 
-drop = drop == 'Y'
+drop = drop_char == 'Y'
 
 score_sum = test1 + test2 + test3 + test4
 
@@ -72,7 +72,6 @@ elif average >= PASSING_THRESHOLD:
 else:
     letter_grade = 'F'
     grade_sign = ''
-
 
 letter_grade += grade_sign
 
