@@ -53,7 +53,7 @@ if drop:
 
 average = score_sum / number_of_scores
 
-if average % 10 > 7:
+if average % 10 >= 7:
     grade_sign = '+'
 elif average % 10 < 4:
     grade_sign = '-'
