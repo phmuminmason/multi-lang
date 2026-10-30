@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-A_PLUS_SCORE = 97.0
-PASSING_SCORE = 60.0
-NUMBER_OF_SCORES = 4
+require_relative 'constants'
 
 class StudentGrade
   attr_reader :name, :scores, :average, :grade
@@ -40,7 +38,7 @@ class StudentGrade
     gets.chomp.downcase == 'y'
   end
 
-  def analyze
+  def evaluate
     calculate_average
     self.grade = calculate_grade
   end
@@ -74,14 +72,6 @@ class StudentGrade
   end
 
   def to_s
-    format("%s's average: %.1f%% (%s)", name, average, grade)
+    format("Grade for %s: %.1f%% (%s)", name, average, grade)
   end
 end
-
-student = StudentGrade.new
-
-student.prompt_for_name
-student.prompt_for_scores
-student.analyze
-
-puts student

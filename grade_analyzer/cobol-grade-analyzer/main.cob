@@ -1,131 +1,128 @@
 IDENTIFICATION DIVISION.
-PROGRAM-ID. GRADE-ANALYZER.
+PROGRAM-ID. grade-ANALYZER.
 
 DATA DIVISION.
 WORKING-STORAGE SECTION. 
-  01 USER-NAME     PIC X(20).
-  01 SCORE-TABLE.
-    05 TEST-SCORE  PIC 999 OCCURS 4 TIMES.
-  01 DROP-VALUE    PIC A.
-    88 DROP-LOWEST VALUE "Y", "y".
-    88 KEEP-LOWEST VALUE "N", "n".
-    88 VALID-DROP  VALUE "Y", "y", "N", "n".
+  01 user-name     PIC X(20).
+  01 ScoreTable.
+    05 test-score  PIC 999 OCCURS 4 TIMES.
+  01 drop-value    PIC A.
+    88 drop-lowest VALUE "Y", "y".
+    88 keep-lowest VALUE "N", "n".
+    88 valid-drop  VALUE "Y", "y", "N", "n".
 
-  01 TOTAL         PIC 999 VALUE ZEROES.
-  01 AVERAGE       PIC 999V9.
-  01 DISP-AVG      PIC ZZ9.9.
+  01 average       PIC 999V9 VALUE ZEROES.
+  01 display-avg   PIC ZZ9.9 VALUE ZEROES.
+  01 grade         PIC XX VALUE SPACES.
 
-  01 GRADE         PIC XX VALUE SPACES.
-
-  01 ENTRIES       PIC 9 VALUE 4.
-
-  01 IDX           PIC 9 VALUE 1.
-  01 SCORE-BUFFER  PIC XXX VALUE SPACES.
-  01 VALUE-BUFFER  PIC S999.
+  01 total         PIC 999 VALUE ZEROES.
+  01 i             PIC 9 VALUE 1.
+  01 entries       PIC 9 VALUE 4.
+  01 score-buffer  PIC XXX VALUE SPACES.
+  01 value-buffer  PIC S999 VALUE ZEROES.
 
 PROCEDURE DIVISION.
-START-RUN. 
-  PERFORM RECEIVING
-  PERFORM CALCULATION
+StartRun. 
+  PERFORM Receiving
+  PERFORM Calculation
 
-  DISPLAY "GRADE FOR " FUNCTION TRIM(USER-NAME) 
-    ": " DISP-AVG "% (" FUNCTION TRIM(GRADE) ")"
+  DISPLAY "Grade for " FUNCTION TRIM(user-name) 
+    ": " display-avg "% (" FUNCTION TRIM(grade) ")"
 STOP RUN. 
 
-RECEIVING SECTION.
-  RECEIVE-NAME.
-    DISPLAY "ENTER YOUR NAME: " WITH NO ADVANCING
-    ACCEPT USER-NAME.
+Receiving SECTION.
+  ReceiveName.
+    DISPLAY "Enter your name: " WITH NO ADVANCING
+    ACCEPT user-name.
 
-  RECEIVE-TEST-SCORES.
-    PERFORM VARYING IDX FROM 1 BY 1 UNTIL IDX > ENTRIES
-      DISPLAY "ENTER SCORE #" IDX ": " WITH NO ADVANCING
-      ACCEPT SCORE-BUFFER
+  ReceiveTestScores.
+    PERFORM VARYING i FROM 1 BY 1 UNTIL i > entries
+      DISPLAY "Enter score #" i ": " WITH NO ADVANCING
+      ACCEPT score-buffer
 
-      PERFORM VALIDATE-TEST-SCORE
+      PERFORM ValidateTestScore
 
-      MOVE VALUE-BUFFER TO TEST-SCORE(IDX)
+      MOVE value-buffer TO test-score(i)
     END-PERFORM.
 
-  RECEIVE-DROP.
-    DISPLAY "DROP LOWEST GRADE? (Y/N): " WITH NO ADVANCING
-    ACCEPT DROP-VALUE
-    PERFORM VALIDATE-DROP.
+  ReceiveDrop.
+    DISPLAY "Drop lowest grade? (Y/N): " WITH NO ADVANCING
+    ACCEPT drop-value
+    PERFORM ValidateDrop.
 
-CALCULATION SECTION.
-  CALCULATE-AVERAGE.
-    SORT TEST-SCORE ON DESCENDING KEY TEST-SCORE
+Validation SECTION.
+  ValidateTestScore.
+    IF FUNCTION TEST-NUMVAL(score-buffer) > 0
+      PERFORM TestScoreError
+    ELSE
+      MOVE FUNCTION NUMVAL(score-buffer) TO value-buffer
+      PERFORM ValidateScoreValue
+    END-IF.
 
-    IF DROP-LOWEST THEN
-      COMPUTE ENTRIES = ENTRIES - 1
+  ValidateScoreValue.
+    IF value-buffer < 1
+      PERFORM ScoreValueError
+    END-IF.
+
+  ValidateDrop.
+    EVALUATE TRUE
+    WHEN drop-lowest
+      DISPLAY "Dropping lowest test score."
+    WHEN keep-lowest
+      DISPLAY "Averaging all test scores."
+    WHEN NOT valid-drop
+      PERFORM DropValueError
+    END-EVALUATE.
+
+Calculation SECTION.
+  CalculateAverage.
+    SORT test-score ON DESCENDING KEY test-score
+
+    IF drop-lowest THEN
+      COMPUTE entries = entries - 1
     END-IF
 
-    PERFORM VARYING IDX FROM 1 BY 1 UNTIL IDX > ENTRIES
-      ADD TEST-SCORE(IDX) TO TOTAL
+    PERFORM VARYING i FROM 1 BY 1 UNTIL i > entries
+      ADD test-score(i) TO total
     END-PERFORM
 
-    COMPUTE AVERAGE = TOTAL / ENTRIES
+    COMPUTE average = total / entries
+    MOVE average TO display-avg.
 
-    MOVE AVERAGE TO DISP-AVG.
-
-  CALCULATE-GRADE.
+  CalculateGrade.
     EVALUATE TRUE
-      WHEN AVERAGE >= 97.0 MOVE "A+" TO GRADE
-      WHEN AVERAGE >= 94.0 MOVE "A " TO GRADE
-      WHEN AVERAGE >= 90.0 MOVE "A-" TO GRADE
-      WHEN AVERAGE >= 87.0 MOVE "B+" TO GRADE
-      WHEN AVERAGE >= 84.0 MOVE "B " TO GRADE
-      WHEN AVERAGE >= 80.0 MOVE "B-" TO GRADE
-      WHEN AVERAGE >= 77.0 MOVE "C+" TO GRADE
-      WHEN AVERAGE >= 74.0 MOVE "C " TO GRADE
-      WHEN AVERAGE >= 70.0 MOVE "C-" TO GRADE
-      WHEN AVERAGE >= 67.0 MOVE "D+" TO GRADE
-      WHEN AVERAGE >= 64.0 MOVE "D " TO GRADE
-      WHEN AVERAGE >= 60.0 MOVE "D-" TO GRADE
-      WHEN OTHER MOVE "F" TO GRADE
+      WHEN average >= 97.0 MOVE "A+" TO grade
+      WHEN average >= 94.0 MOVE "A " TO grade
+      WHEN average >= 90.0 MOVE "A-" TO grade
+      WHEN average >= 87.0 MOVE "B+" TO grade
+      WHEN average >= 84.0 MOVE "B " TO grade
+      WHEN average >= 80.0 MOVE "B-" TO grade
+      WHEN average >= 77.0 MOVE "C+" TO grade
+      WHEN average >= 74.0 MOVE "C " TO grade
+      WHEN average >= 70.0 MOVE "C-" TO grade
+      WHEN average >= 67.0 MOVE "D+" TO grade
+      WHEN average >= 64.0 MOVE "D " TO grade
+      WHEN average >= 60.0 MOVE "D-" TO grade
+      WHEN OTHER MOVE "F" TO grade
     END-EVALUATE.
 
-VALIDATION SECTION.
-  VALIDATE-TEST-SCORE.
-    IF FUNCTION TEST-NUMVAL(SCORE-BUFFER) > 0
-      PERFORM TEST-SCORE-ERROR
-    ELSE
-      MOVE FUNCTION NUMVAL(SCORE-BUFFER) TO VALUE-BUFFER
-      PERFORM VALIDATE-SCORE-VALUE
-    END-IF.
+RaiseError SECTION.
+  TestScoreError.
+    DISPLAY "Error: test score must be a number."
+    DISPLAY "Entered: " QUOTES score-buffer QUOTES
+    PERFORM AbortProgram.
 
-  VALIDATE-SCORE-VALUE.
-    IF VALUE-BUFFER < 1
-      PERFORM SCORE-VALUE-ERROR
-    END-IF.
+  ScoreValueError.
+    DISPLAY "Error: test score must be positive."
+    DISPLAY "Value received: " value-buffer
+    PERFORM AbortProgram.
 
-  VALIDATE-DROP.
-    EVALUATE TRUE
-    WHEN DROP-LOWEST
-      DISPLAY "DROPPING LOWEST TEST SCORE."
-    WHEN KEEP-LOWEST
-      DISPLAY "AVERAGING ALL TEST SCORES."
-    WHEN NOT VALID-DROP
-      PERFORM DROP-ERROR
-    END-EVALUATE.
+  DropValueError.
+    DISPLAY "Error: drop answer must be " 
+      QUOTE "Y" QUOTE " or " QUOTE "N" QUOTE
+    DISPLAY "Received: " drop-value
+    PERFORM AbortProgram.
 
-RAISE-ERROR SECTION.
-  TEST-SCORE-ERROR.
-    DISPLAY "ERROR: TEST SCORE MUST BE A NUMBER."
-    DISPLAY "ENTERED: " QUOTES SCORE-BUFFER QUOTES
-    PERFORM ABORT-PROGRAM.
-
-  SCORE-VALUE-ERROR.
-    DISPLAY "ERROR: TEST SCORE MUST BE POSITIVE."
-    DISPLAY "VALUE RECEIVED: " VALUE-BUFFER
-    PERFORM ABORT-PROGRAM.
-
-  DROP-ERROR.
-    DISPLAY "ERROR: DROP ANSWER MUST BE " 
-      QUOTE "Y" QUOTE " OR " QUOTE "N" QUOTE
-    DISPLAY "RECEIVED: " DROP-VALUE
-    PERFORM ABORT-PROGRAM.
-
-COMMAND SECTION.
-  ABORT-PROGRAM.
+Command SECTION.
+  AbortProgram.
     STOP RUN.

@@ -105,7 +105,7 @@ impl Student {
 
     pub fn report(&self) -> String {
         format!(
-            "Grade for {}: {:.2}% ({})", 
+            "Grade for {}: {:.1}% ({})", 
             self.name, self.average, self.grade
         )
     }

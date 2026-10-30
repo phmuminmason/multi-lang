@@ -4,7 +4,7 @@ A_PLUS_THRESHOLD = 97.0
 PASSING_THRESHOLD = 60.0
 
 lowest_score = 0
-divisor = 4
+number_of_scores = 4
 letter_grade = ""
 grade_sign = ""
 
@@ -13,7 +13,7 @@ name = input("What is your name?: ")
 test1 = int(input("Enter your first score: "))
 if test1 <= 0:
     print(NP_SCORE_ERROR)
-    exit(1) # Exit code is for my own purposes
+    exit(1) # Exit code makes for better error handling
 lowest_score = test1
 
 test2 = int(input("Enter your second score: "))
@@ -48,10 +48,10 @@ drop = drop_char == 'Y'
 score_sum = test1 + test2 + test3 + test4
 
 if drop:
-    divisor = 3
+    number_of_scores = 3
     score_sum -= lowest_score
 
-average = score_sum / divisor
+average = score_sum / number_of_scores
 
 if average % 10 > 7:
     grade_sign = '+'
@@ -75,5 +75,4 @@ else:
 
 letter_grade += grade_sign
 
-
-print(f'{name}: {average:.1f}% "{letter_grade}"')
+print(f'Grade for {name}: {average:.1f}% ({letter_grade})')
