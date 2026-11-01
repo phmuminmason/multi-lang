@@ -3,10 +3,38 @@
 title: compound_interest Activity Diagram
 
 start
+group Deposit {
+	:Ask user for Deposit;
+	:Validate input;
+	:Deposit; <<object>>
+}
 
-:Write code;
+group Rate {
+	:Ask user for Annual Interest Rate;
+	:Validate input;
+	:Annual Interest Rate; <<object>>
+	:Convert into a percentage;
+	:Calculate Monthly Interest Rate;
+	:Monthly Interest Rate; <<object>>
+}
 
-:Make no mistakes;
+group Months {
+	:Ask user for Number of Months;
+	:Validate input;
+	:Number of Months; <<object>>
+}
+
+group Goal {
+	:Ask user for Goal;
+	:Validate input (can be zero);
+	:Goal; <<object>>
+}
+
+:Compute compounding interest for Number of Months;
+
+:Compute number of months for Goal;
+
+:Output results;
 
 end
 

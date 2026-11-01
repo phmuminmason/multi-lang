@@ -1,1 +1,17 @@
 compound_interest
+1. Prompt the user for
+	a. Deposit
+	b. Interest Rate percentage
+	c. Number of months
+	d. Goal
+2. Use loops to handle input validation
+	a. Keep asking if inputs were not numeric
+	b. None of the values can be negative
+	c. Goal alone can be 0
+3. Accept an int for Rate and convert it into a percentage after. Divide by 12 to get the Monthly Interest Rate
+4. Compute compounding interest for Number of Months. Output month number and new account balance. 
+5. Compute the number of months needed to reach goal with a second loop. 
+	a. "Once you reach the Goal amount format the number of months with thousands separator and output the results."
+6. Use Hungarian notation
+7. Comment code throughout
+8. No reflection

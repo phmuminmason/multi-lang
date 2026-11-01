@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
-class Compound_interest
-  attr_accessor :text
+require_relative 'interest_calculator'
 
-  def initialize()
-    self.text = "Hello, world!"
-  end
-end
-
-compound_interest = Compound_interest.new
-puts compound_interest.text
+calculator = InterestCalculator.new
+calculator.calculate_monthly_rate
+calculator.calculate_growth
