@@ -1,0 +1,13 @@
+@startuml
+
+title: compound_interest Activity Diagram
+
+start
+
+:Write code;
+
+:Make no mistakes;
+
+end
+
+@enduml

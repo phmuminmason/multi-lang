@@ -1,3 +1,4 @@
-/target
+/rust_*/target
 *.so
 main
+*.png
